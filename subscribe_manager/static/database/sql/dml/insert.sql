@@ -1,0 +1,1 @@
+INSERT INTO subscribe_manager (file_name, url, subscription_userinfo, create_date, update_date) VALUES (?, ?, ?, ?, ?)
