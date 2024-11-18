@@ -1,7 +1,9 @@
 # 项目背景
 本人常用的机场为了订阅安全，限制每天订阅次数，一旦超过则会重置订阅链接。本项目是为了解决无意识地超过次数限制，避免陷入订阅失效焦虑。
 
-*PS: 我用的是 OpenClash，虽然设置每天更新，但是上面会显示套餐余额，每次点击查看套餐余额相当于就订阅了一次*
+*PS: 我用的客户端是 OpenClash，虽然设置每天更新，但是上面会显示套餐余额，每次点击查看套餐余额相当于就订阅了一次*
+
+[机场推荐](https://invite.wgetcloud.ltd/auth/register?code=t7jm)
 
 # 实现功能
 
@@ -30,7 +32,8 @@ services:
         url: "<your_original_subscribe_link1>"
       - uuid: "<your_unique_identifier2>"
         url: "<your_original_subscribe_link2>"
-      ...
+      - uuid: "..."
+        url: "..."
 ```
 
 配置文件定义说明：
@@ -53,7 +56,7 @@ services:
 添加 `example.py` : 
 
 ```python
-from subscribe_manager.service import SubscribeManager
+from subscribe_manager import SubscribeManager
 
 sm = SubscribeManager()
 sm.start()
