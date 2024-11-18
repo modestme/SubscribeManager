@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="subscribe_manager-modestme",
+    name="subscribe-manager",
     version="0.0.1",
     author="modestme",
     author_email="844713856@qq.com",

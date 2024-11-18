@@ -12,7 +12,7 @@
 # 快速开始
 使用 `pip` 安装：
 ```shell
-$ pip install sbscmgr 
+$ pip install subscribe-manager
 ```
 
 添加配置文件 `config.yaml`，格式如下：
@@ -140,7 +140,8 @@ services:
         url: "<your_original_subscribe_link1>"
       - uuid: "<your_unique_identifier2>"
         url: "<your_original_subscribe_link2>"
-      ...
+      - uuid: "..."
+        url: "..."
 ```
 
 运行命令：
