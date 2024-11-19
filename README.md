@@ -47,7 +47,7 @@ services:
 - auto_transform: 自动订阅转换，目前只支持 clash -> surfboard, clash -> surge
 - `urls` : 设置订阅信息
   - `uuid`：唯一标识，在下载订阅文件保存时，文件名依此生成
-  - `url` ：订阅的原始环境
+  - `url` ：订阅的原始链接
 
 
 
