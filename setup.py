@@ -9,7 +9,7 @@ setuptools.setup(
     author="modestme",
     author_email="844713856@qq.com",
     description="A subscription proxy tool that unifies subscription management, regularly downloads and stores "
-                "subscription information, automatically converts subscriptions, and provides proxy services.",
+    "subscription information, automatically converts subscriptions, and provides proxy services.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/modestme/SubscribeManager",
@@ -25,7 +25,7 @@ setuptools.setup(
         "loguru>=0.7.2,<0.8.0",
         "aiohttp>=3.10.10,<4.0.0",
         "nest-asyncio>=1.6.0,<2.0.0",
-        "colorama>=0.4.6,<0.5.0"
+        "colorama>=0.4.6,<0.5.0",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
