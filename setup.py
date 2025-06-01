@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="subscribe-manager",
-    version="0.1.0",
+    version="0.2.0",
     author="modestme",
     author_email="844713856@qq.com",
     description="A subscription proxy tool that unifies subscription management, regularly downloads and stores "
