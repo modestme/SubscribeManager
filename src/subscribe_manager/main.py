@@ -1,6 +1,6 @@
 import argparse
 import yaml
-from subscribe_manager import SubscribeManager
+from subscribe_manager.service import SubscribeManager
 from subscribe_manager.constant import (
     DEFAULT_MAX_SUBSCRIBE_COUNT,
     DEFAULT_CONFIG_FILE,
