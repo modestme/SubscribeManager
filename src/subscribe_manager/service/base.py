@@ -4,6 +4,9 @@ from typing import List, Optional
 import yaml
 from pydantic import BaseModel
 from subscribe_manager.constant import BASE_DIR
+from subscribe_manager.common.log_util import get_logger
+
+logger = get_logger(__name__)
 
 
 class Proxy(BaseModel):
@@ -129,10 +132,10 @@ def load_subscribe_config(subscribe_name: str, target: str) -> SubscribeConfig:
     proxys.append(Proxy(name="DIRECT", type="INTERNAL"))
     proxys_map = {proxy.name: proxy for proxy in proxys}
 
-    proxy_groups = []
+    proxy_groups: List[ProxyGroup] = []
+    proxy_group: ProxyGroup
     for proxy_group_dict in subscribe_content["proxy-groups"]:
         proxy_names = proxy_group_dict["proxies"]
-        # group_proxys = [proxys_map.get(name) for name in proxy_names if name in proxys_map.items()]
         group_proxys = [item for name in proxy_names if (item := proxys_map.get(name)) is not None]
 
         proxy_group_name = proxy_group_dict["name"]
@@ -151,28 +154,45 @@ def load_subscribe_config(subscribe_name: str, target: str) -> SubscribeConfig:
 
     proxy_groups_map = {proxy_group.name: proxy_group for proxy_group in proxy_groups}
 
-    rules = []
-    for rule in subscribe_content["rules"]:
-        items = rule.split(",")
+    rules: List[Rule] = []
+    rule: Rule
+    for rule_str in subscribe_content["rules"]:
+        items: List[str] = rule_str.split(",")
         if len(items) <= 2:
-            rule_type = items[0]
-            proxy_group_name = items[1]
-            proxy_group = proxy_groups_map.get(proxy_group_name)  # type: ignore
+            rule_type = items[0].strip()
+            proxy_group_name = items[1].strip()
+            try:
+                proxy_group = proxy_groups_map[proxy_group_name]
+            except KeyError:
+                logger.error(f"Proxy group '{proxy_group_name}' not found")
+                continue
             rule = Rule(type=rule_type, proxy_group=proxy_group)
         elif len(items) == 3:
-            rule_type = items[0]
-            value = items[1]
-            proxy_group_name = items[2]
-            proxy_group = proxy_groups_map.get(proxy_group_name)  # type: ignore
+            rule_type = items[0].strip()
+            value = items[1].strip()
+            proxy_group_name = items[2].strip()
+            try:
+                proxy_group = proxy_groups_map[proxy_group_name]
+            except KeyError:
+                logger.error(f"Proxy group '{proxy_group_name}' in rule '{rule_str}' not found")
+                continue
             rule = Rule(type=rule_type, value=value, proxy_group=proxy_group)
         elif len(items) == 4:
-            rule_type = items[0]
-            value = items[1]
-            proxy_group_name = items[2]
-            tag = items[3]
-            proxy_group = proxy_groups_map.get(proxy_group_name)  # type: ignore
+            rule_type = items[0].strip()
+            value = items[1].strip()
+            proxy_group_name = items[2].strip()
+            tag = items[3].strip()
+            try:
+                proxy_group = proxy_groups_map[proxy_group_name]
+            except KeyError:
+                logger.error(f"Proxy group '{proxy_group_name}' not found")
+                continue
             rule = Rule(type=rule_type, value=value, proxy_group=proxy_group, tag=tag)
-        rules.append(rule)
+        else:
+            logger.error(f"rule {rule_str} not support")
+            continue
+        if rule is not None:
+            rules.append(rule)
 
     subscribe_config = SubscribeConfig(
         sub_type=target, begin_comment=begin_comment, proxys=proxys, proxy_groups=proxy_groups, rules=rules

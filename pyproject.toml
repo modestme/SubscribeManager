@@ -1,9 +1,10 @@
-[tool.poetry]
-name = "SubscribeProxy"
-version = "0.1.0"
+[project]
+name = "subscribe-manager"
+version = "0.2.1"
 description = "订阅代理工具，统一管理订阅，定时下载并存储订阅信息，自动进行订阅转换，并提供代理服务"
-authors = ["modestme"]
+authors = [{name = "modestme", email = "lowkeymodestme@gmail.com"}]
 readme = "README.md"
+requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -14,6 +15,18 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Operating System :: OS Independent"
 ]
+license = { text = "MIT" }
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    { include = "subscribe_manager", from = "src" },
+]
+[tool.poetry.scripts]
+sbscmgr="subscribe_manager.main:main"
 
 [[tool.poetry.source]]
 name = "pypi_mirror"
@@ -21,7 +34,6 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
 priority = "primary"
 
 [tool.poetry.dependencies]
-python = "^3.11"
 fastapi = "^0.115.2"
 uvicorn = "^0.31.1"
 pyyaml = "^6.0.2"
@@ -36,14 +48,10 @@ ruff = "^0.6.4"
 mypy = "^1.11.2"
 
 [tool.ruff]
-# 设置 Python 的目标版本
 target-version = "py311"
-# 排除的路径列表
 exclude = [".venv", "tests", "build"]
-# 最大行长度
 line-length = 120
 
-# 选择需要启用的规则
 [tool.ruff.lint]
 select = ["E", "F", "N"]
 pydocstyle.convention = "google"
@@ -53,4 +61,4 @@ ignore_missing_imports = true
 strict = true
 disallow_untyped_defs = true
 check_untyped_defs = true
-exclude = "^(tests/|build/)"
+exclude = "^(tests/|build/|dist/)"
