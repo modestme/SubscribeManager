@@ -1,8 +1,8 @@
 import argparse
 from subscribe_manager.service import SubscribeManager
 from subscribe_manager.constant import DEFAULT_CONFIG_FILE
-from subscribe_manager.common.log_util import get_logger
-from subscribe_manager.config.settings import settings, update_settings_from_file
+from subscribe_manager.common import get_logger, load_config_file
+from subscribe_manager.config import settings
 
 logger = get_logger(__name__)
 
@@ -20,7 +20,8 @@ def main() -> None:
 
     logger.info(f"配置文件路径 {config_file}")
 
-    update_settings_from_file(config_file)
+    if not load_config_file(config_file):
+        logger.info(f"配置文件 {config_file} 加载失败")
 
     sm = SubscribeManager(
         max_subscribe_count=settings.max_subscribe_count,
