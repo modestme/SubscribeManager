@@ -38,7 +38,7 @@ jobs:
         
     environment:
       name: pypi
-      url: https://pypi.org/project/subscribe-manager/${{ github.event.release.name }}
+      url: https://pypi.org/project/subscribe-manager
 
     steps:
       - name: Retrieve release distributions
