@@ -228,6 +228,7 @@ class SubscribeManager:
                     )
                 self.current_subscribe_count += 1
         await asyncio.gather(*tasks)
+        return None
 
     def download_job(self) -> None:
         # 重置订阅次数

@@ -20,7 +20,9 @@ def load_config_file(config_file: str) -> bool:
     file_settings = config.get("settings", {})
     settings.max_subscribe_count = file_settings.get("max_subscribe_count", settings.max_subscribe_count)
     settings.subscribe_save_path = file_settings.get("subscribe_save_path", settings.subscribe_save_path)
-    settings.refresh_flag = file_settings.get("refresh_flag", settings.refresh_flag)
+    settings.refresh_flag = (
+        file_settings.get("refresh_flag") == "true" if file_settings.get("refresh_flag") else settings.refresh_flag
+    )
     settings.interval_type = file_settings.get("interval_type", settings.interval_type)
     settings.interval = file_settings.get("interval", settings.interval)
     settings.start_date = file_settings.get("start_date", settings.start_date)
