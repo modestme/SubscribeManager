@@ -1,6 +1,6 @@
 [project]
 name = "subscribe-manager"
-version = "0.2.7"
+version = "0.3.0"
 description = "订阅代理工具，统一管理订阅，定时下载并存储订阅信息，自动进行订阅转换，并提供代理服务"
 authors = [{name = "modestme", email = "lowkeymodestme@gmail.com"}]
 readme = "README.md"

@@ -30,19 +30,6 @@ from subscribe_manager.constant import (
 
 logger = get_logger(__name__)
 
-# FILE_TYPE_MAP = {"clash": "yaml", "surge": "conf", "surfboard": "conf"}
-# TRANSFORM_ALLOWED = {"clash": ["surge", "surfboard"]}
-# # DEFAULT_MAX_SUBSCRIBE_COUNT = 5
-# DEFAULT_CONFIG_FILE = "config.yaml"
-# DEFAULT_SUBSCRIBE_SAVE_PATH = "subscribe"
-# DEFAULT_REFRESH_FLAG = True
-# DEFAULT_INTERVAL_TYPE = "days"
-# DEFAULT_INTERVAL = 1
-# DEFAULT_START_DATE = "2000-01-01 00:00:00"
-# DEFAULT_HOST = "127.0.0.1"
-# DEFAULT_PORT = 8000
-# DEFAULT_DB_NAME = "subscribe_manager.db"
-
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 )
