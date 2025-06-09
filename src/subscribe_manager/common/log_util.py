@@ -3,7 +3,7 @@ import os
 from typing import Any, Optional
 
 import colorama
-from subscribe_manager.config.settings import settings
+from subscribe_manager.config import settings
 
 # 初始化 Colorama，用于终端颜色支持
 colorama.init(autoreset=True)
