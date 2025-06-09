@@ -3,6 +3,7 @@ import os
 from typing import Any, Optional
 
 import colorama
+from subscribe_manager.config.settings import settings
 
 # 初始化 Colorama，用于终端颜色支持
 colorama.init(autoreset=True)
@@ -66,10 +67,9 @@ def get_logger(
 ) -> logging.Logger:
     logger = logging.getLogger(name)
 
-    log_level = log_level or int(os.getenv("SM_LOG_LEVEL", logging.DEBUG))
-    console_enable = console_enable or os.getenv("SM_LOG_CONSOLE_ENABLE", "true") == "true"
-    log_file = log_file or os.getenv("SM_LOG_FILE")
-
+    log_level = log_level or int(settings.log_level)
+    console_enable = console_enable or settings.log_console_enable
+    log_file = log_file or settings.log_file
     logger.setLevel(log_level)  # 设置日志级别
     if not logger.handlers:
         if console_enable:
@@ -83,6 +83,10 @@ def get_logger(
             # 将 Handler 添加到 Logger
             logger.addHandler(handler)
         if log_file is not None:
+            dir_path = os.path.dirname(log_file)
+            if dir_path and not os.path.exists(dir_path):
+                os.makedirs(dir_path)
+
             # 创建 Handler 输出到终端
             file_handler = logging.FileHandler(log_file, encoding="utf-8")
             # 设置自定义 Formatter

@@ -26,3 +26,7 @@ DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
 # 默认数据库名称
 DEFAULT_DB_NAME = "subscribe_manager.db"
+# 日志默认配置
+DEFAULT_LOG_LEVEL = 10
+DEFAULT_CONSOLE_ENABLE = True
+DEFAULT_LOG_FILE = "logs/subscribe_manager.log"
