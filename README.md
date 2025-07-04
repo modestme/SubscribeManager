@@ -3,7 +3,6 @@
 
 *PS: 我用的客户端是 OpenClash，虽然设置每天更新，但是上面会显示套餐余额，每次点击查看套餐余额相当于就订阅了一次*
 
-[机场推荐](https://invite.wgetcloud.ltd/auth/register?code=t7jm)
 
 # 实现功能
 
