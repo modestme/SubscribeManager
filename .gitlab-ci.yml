@@ -1,0 +1,35 @@
+stages:
+  - build
+  # - push
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+  # DOCKER_DRIVER: overlay2
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_TLS_CERTDIR: ""
+  # HTTP_PROXY: "http://192.168.1.30:47890"
+  # HTTPS_PROXY: "http://192.168.1.30:47890"
+  # NO_PROXY: "localhost,127.0.0.1,docker,dind"
+
+build_image:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t ${CI_PROJECT_NAME}:latest .
+  only:
+    - develop
+
+# push_image:
+#   stage: push
+#   image: docker:latest
+#   services:
+#     - docker:dind
+#   script:
+#     - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+#     - docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG
+#   only:
+#     - develop
+#   dependencies:
+#     - build_image 
