@@ -16,8 +16,8 @@ build_image:
   image: docker:latest
   tags:
     - gitlab-runner
-  services:
-    - docker:dind
+  # services:
+  #   - docker:dind
   script:
     - docker build -t ${CI_PROJECT_NAME}:latest .
   only:
