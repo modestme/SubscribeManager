@@ -4,8 +4,6 @@ stages:
 
 variables:
   DOCKER_DRIVER: overlay2
-  HTTP_PROXY: $HTTP_PROXY
-  HTTPS_PROXY: $HTTPS_PROXY
   NO_PROXY: "localhost,127.0.0.1,docker,dind"
 
 build_image:
