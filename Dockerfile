@@ -3,12 +3,15 @@ FROM python:3.11-slim
 # ENV http_proxy=${http_proxy:-}
 # ENV https_proxy=${https_proxy:-}
 # ENV HTTP_PROXY=${HTTP_PROXY:-}
-# ENV HTTPS_PROXY=${HTTPS_PROXY:-}
+ENV QYC_TEST1=${HTTPS_PROXY}
+ENV QYC_TEST2=$HTTPS_PROXY
 
 RUN echo "http_proxy=$http_proxy" && \
     echo "https_proxy=$https_proxy" && \
     echo "HTTP_PROXY=$HTTP_PROXY" && \
-    echo "HTTPS_PROXY=$HTTPS_PROXY"
+    echo "HTTPS_PROXY=$HTTPS_PROXY" && \
+    echo "QYC_TEST1=$QYC_TEST1" && \
+    echo "QYC_TEST2=$QYC_TEST2"
 
 WORKDIR /app
 
