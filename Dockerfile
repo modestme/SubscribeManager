@@ -5,7 +5,7 @@ WORKDIR /app
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir poetry     
 
-COPY .prproject.toml .
+COPY prproject.toml .
 
 RUN poetry install --no-root
 
