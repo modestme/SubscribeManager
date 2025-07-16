@@ -24,7 +24,12 @@ build_image:
     - echo "http_proxy=$http_proxy"
     - echo "https_proxy=$https_proxy"
     - docker version
-    - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
+    - docker build \
+        --build-arg http_proxy=$http_proxy \
+        --build-arg https_proxy=$https_proxy \
+        --build-arg HTTP_PROXY=$HTTP_PROXY \
+        --build-arg HTTPS_PROXY=$HTTPS_PROXY \
+        -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
   only:
     - develop
 
