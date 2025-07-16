@@ -5,7 +5,7 @@ stages:
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
   DOCKER_DRIVER: overlay2
-  DOCKER_HOST: tcp://docker:2375
+  DOCKER_HOST: "unix:///var/run/docker.sock"
   DOCKER_TLS_CERTDIR: ""
   HTTP_PROXY: "http://192.168.1.30:47890"
   HTTPS_PROXY: "http://192.168.1.30:47890"
@@ -16,18 +16,15 @@ build_image:
   image: docker:latest
   tags:
     - gitlab-runner
-  services:
-    - docker:dind
   script:
-    - docker build -t private/$(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
+    - docker version
+    - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
   only:
     - develop
 
 # push_image:
 #   stage: push
 #   image: docker:latest
-#   services:
-#     - docker:dind
 #   script:
 #     - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 #     - docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG
