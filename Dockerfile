@@ -1,4 +1,4 @@
-FROM python:3.11-slim 
+FROM python:3.11
 
 WORKDIR /app
 
@@ -13,4 +13,6 @@ COPY . .
 
 RUN poetry install
 
-CMD ["python", "src/subscribe_manager/main.py"] 
+WORKDIR /app/src
+
+CMD ["python", "-m", "subscribe_manager.main"] 
