@@ -16,6 +16,7 @@ build_image:
   tags:
     - gitlab-runner
   script:
+    - set -x
     - |
       docker build \
         --build-arg HTTP_PROXY=$HTTP_PROXY \
