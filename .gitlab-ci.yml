@@ -21,7 +21,7 @@ build_image:
         -t docker.io/$DOCKERHUB_USERNAME/subscribe-manager:latest .
     - docker container prune -f && docker image prune -f
   only:
-    - develop
+    - master
 
 push_image:
   stage: push
@@ -30,6 +30,6 @@ push_image:
     - echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_LOGIN_NAME --password-stdin
     - docker push docker.io/$DOCKERHUB_USERNAME/subscribe-manager:latest
   only:
-    - develop
+    - master
   dependencies:
     - build_image 
