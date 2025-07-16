@@ -6,10 +6,10 @@ ARG HTTPS_PROXY
 
 FROM python:3.11-slim
 
-ENV http_proxy=${http_proxy:-}
-ENV https_proxy=${https_proxy:-}
-ENV HTTP_PROXY=${HTTP_PROXY:-}
-ENV HTTPS_PROXY=${HTTPS_PROXY:-}
+# ENV http_proxy=${http_proxy:-}
+# ENV https_proxy=${https_proxy:-}
+# ENV HTTP_PROXY=${HTTP_PROXY:-}
+# ENV HTTPS_PROXY=${HTTPS_PROXY:-}
 
 RUN echo "http_proxy=$http_proxy" && \
     echo "https_proxy=$https_proxy" && \
