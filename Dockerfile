@@ -11,6 +11,11 @@ ENV https_proxy=${https_proxy}
 ENV HTTP_PROXY=${HTTP_PROXY}
 ENV HTTPS_PROXY=${HTTPS_PROXY}
 
+RUN echo "http_proxy=$http_proxy" && \
+    echo "https_proxy=$https_proxy" && \
+    echo "HTTP_PROXY=$HTTP_PROXY" && \
+    echo "HTTPS_PROXY=$HTTPS_PROXY"
+
 WORKDIR /app
 
 RUN pip install --no-cache-dir --upgrade pip \
