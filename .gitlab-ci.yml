@@ -19,7 +19,7 @@ build_image:
   services:
     - docker:dind
   script:
-    - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
+    - docker build -t private/$(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
   only:
     - develop
 
