@@ -5,8 +5,8 @@ stages:
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
   DOCKER_DRIVER: overlay2
-  DOCKER_HOST: "unix:///var/run/docker.sock"
-  DOCKER_TLS_CERTDIR: ""
+  # DOCKER_HOST: "unix:///var/run/docker.sock"
+  # DOCKER_TLS_CERTDIR: ""
   HTTP_PROXY: "http://192.168.1.30:47890"
   HTTPS_PROXY: "http://192.168.1.30:47890"
   NO_PROXY: "localhost,127.0.0.1,docker,dind"
@@ -17,8 +17,12 @@ build_image:
   tags:
     - gitlab-runner
   script:
+    - echo "HTTP_PROXY=$HTTP_PROXY"
+    - echo "HTTPS_PROXY=$HTTPS_PROXY"
+    - echo "http_proxy=$http_proxy"
+    - echo "https_proxy=$https_proxy"
     - docker version
-    - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
+    # - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
   only:
     - develop
 
