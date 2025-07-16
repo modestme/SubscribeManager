@@ -20,7 +20,7 @@ build_image:
         --build-arg HTTP_PROXY=$HTTP_PROXY \
         --build-arg HTTPS_PROXY=$HTTPS_PROXY \
         --build-arg NO_PROXY=$NO_PROXY \
-        -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
+        -t subscribe-manager:latest .
     - docker container prune -f && docker image prune -f
   only:
     - develop
