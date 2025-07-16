@@ -1,9 +1,3 @@
-ARG http_proxy
-ARG https_proxy
-ARG HTTP_PROXY
-ARG HTTPS_PROXY
-
-
 FROM python:3.11-slim
 
 # ENV http_proxy=${http_proxy:-}
