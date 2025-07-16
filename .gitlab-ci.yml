@@ -24,7 +24,8 @@ build_image:
     - echo "http_proxy=$http_proxy"
     - echo "https_proxy=$https_proxy"
     - docker version
-    - docker build \
+    - |
+      docker build \
         --build-arg http_proxy=$http_proxy \
         --build-arg https_proxy=$https_proxy \
         --build-arg HTTP_PROXY=$HTTP_PROXY \
