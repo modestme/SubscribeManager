@@ -16,6 +16,8 @@ COPY . .
 
 RUN poetry install
 
-WORKDIR /app/src
+ENV SM_LOG_FILE=/var/log/subscribe-manager/subscribe_manager.log
 
-CMD ["python", "-m", "subscribe_manager.main"] 
+WORKDIR /
+
+CMD ["sbscmgr", "--config", "/etc/subscribe-manager/config.yaml", "--subscribe_save_path", "/var/opt/subscribe-manager/downloads", "--db_name", "/var/opt/subscribe-manager/subscribe_manager.db", "--refresh_flag", "true"]
