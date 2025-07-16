@@ -5,7 +5,13 @@ WORKDIR /app
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir poetry     
 
+RUN poetry --version
+
 COPY pyproject.toml .
+
+RUN cat pyproject.toml
+
+
 
 RUN poetry install --no-root
 
