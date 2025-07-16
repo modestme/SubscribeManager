@@ -17,12 +17,14 @@ build_image:
   tags:
     - gitlab-runner
   script:
+    - export http_proxy=$HTTP_PROXY
+    - export https_proxy=$HTTPS_PROXY
     - echo "HTTP_PROXY=$HTTP_PROXY"
     - echo "HTTPS_PROXY=$HTTPS_PROXY"
     - echo "http_proxy=$http_proxy"
     - echo "https_proxy=$https_proxy"
     - docker version
-    # - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
+    - docker build -t $(echo ${CI_PROJECT_NAME} | tr '[:upper:]' '[:lower:]'):latest .
   only:
     - develop
 
