@@ -1,0 +1,35 @@
+stages:
+  - build
+  - push
+
+variables:
+  DOCKER_DRIVER: overlay2
+  NO_PROXY: "localhost,127.0.0.1,docker,dind"
+
+build_image:
+  stage: build
+  image: docker:latest
+  tags:
+    - gitlab-runner
+  script:
+    - set -x
+    - |
+      docker build \
+        --build-arg HTTP_PROXY=$HTTP_PROXY \
+        --build-arg HTTPS_PROXY=$HTTPS_PROXY \
+        --build-arg NO_PROXY=$NO_PROXY \
+        -t docker.io/$DOCKERHUB_USERNAME/subscribe-manager:latest .
+    - docker container prune -f && docker image prune -f
+  only:
+    - master
+
+push_image:
+  stage: push
+  image: docker:latest
+  script:
+    - echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_LOGIN_NAME --password-stdin
+    - docker push docker.io/$DOCKERHUB_USERNAME/subscribe-manager:latest
+  only:
+    - master
+  dependencies:
+    - build_image 
