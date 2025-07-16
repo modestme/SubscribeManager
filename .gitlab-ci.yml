@@ -26,6 +26,8 @@ build_image:
 push_image:
   stage: push
   image: docker:latest
+  tags:
+    - gitlab-runner
   script:
     - echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_LOGIN_NAME --password-stdin
     - docker push docker.io/$DOCKERHUB_USERNAME/subscribe-manager:latest
