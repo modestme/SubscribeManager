@@ -20,4 +20,4 @@ ENV SM_LOG_FILE=/var/log/subscribe-manager/subscribe_manager.log
 
 WORKDIR /
 
-CMD ["sbscmgr", "--config", "/etc/subscribe-manager/config.yaml", "--subscribe_save_path", "/var/opt/subscribe-manager/downloads", "--db_name", "/var/opt/subscribe-manager/subscribe_manager.db", "--refresh_flag", "true"]
+CMD ["sbscmgr", "--config", "/etc/subscribe-manager/config.yaml", "--subscribe_save_path", "/var/opt/subscribe-manager/downloads", "--db_name", "/var/opt/subscribe-manager/subscribe_manager.db", "--refresh_flag", "true", "--host", "0.0.0.0"]
